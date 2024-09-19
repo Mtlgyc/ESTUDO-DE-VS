@@ -4,47 +4,47 @@ import java.util.Scanner;
 import java.util.Date;
 
 public class Terminal {
-  private ControleBiblioteca controle; // Instância do controle da biblioteca
+  private ControleBiblioteca controle; 
 
-  // Construtor da classe Terminal
+ 
   public Terminal() {
-    controle = new ControleBiblioteca(); // Inicializa a instância do ControleBiblioteca
+    controle = new ControleBiblioteca();
   }
 
-  // Método inicial que exibe o menu principal e lida com as opções
+
   public void ini() {
-    Scanner sc = new Scanner(System.in); // Scanner para entrada de dados
+    Scanner sc = new Scanner(System.in); 
     int op;
 
-    // Loop para exibir o menu principal até que o usuário escolha sair (op = 0)
+
     do {
       op = this.getInt("1. Modo Administrador\n2. Modo Atendimento\n0. Sair");
 
       switch (op) {
         case 0:
-          System.out.println("\nFeito por Josué e Carlos Eduardo"); // Mensagem de encerramento
+          System.out.println("\nFeito por Josué e Carlos Eduardo"); 
           sc.close(); // Fecha o scanner
           return; // Sai do método ini
 
         case 1:
-          modoAdministrador(sc); // Chama o modo administrador
+          modoAdministrador(sc); 
           break;
 
         case 2:
-          modoAtendimento(sc); // Chama o modo atendimento
+          modoAtendimento(sc); 
           break;
 
         default:
-          System.out.println("\nOpção inválida"); // Mensagem de opção inválida
+          System.out.println("\nOpção inválida"); 
       }
-    } while (op != 0); // Continua até que o usuário escolha sair
+    } while (op != 0);
   }
 
-  // Método para lidar com as operações administrativas
+  
   private void modoAdministrador(Scanner sc) {
     int op;
 
-    // Loop para exibir o menu administrativo até que o usuário escolha voltar (op = 0)
+   
     do {
       op = getInt(
           "1. Adicionar Livro\n2. Remover Livro\n3. Adicionar Mapa Temático\n4. Remover Mapa Temático\n5. Adicionar Usuário\n6. Remover Usuário\n0. Voltar");
@@ -52,80 +52,77 @@ public class Terminal {
       switch (op) {
         case 1:
           System.out.print("\nTítulo do livro: ");
-          String tituloLivro = sc.nextLine(); // Obtém o título do livro
+          String tituloLivro = sc.nextLine(); 
 
-          controle.adicionarLivro(new Livro(tituloLivro)); // Adiciona o livro à biblioteca
+          controle.adicionarLivro(new Livro(tituloLivro));
 
-          System.out.println("\nLivro adicionado"); // Mensagem de sucesso
+          System.out.println("\nLivro adicionado"); 
           break;
 
         case 2:
           System.out.print("\nTítulo do livro: ");
-          tituloLivro = sc.nextLine(); // Obtém o título do livro
+          tituloLivro = sc.nextLine(); 
 
-          controle.removerLivro(controle.getLivro(tituloLivro)); // Remove o livro da biblioteca
+          controle.removerLivro(controle.getLivro(tituloLivro));
 
-          System.out.println("\nLivro removido"); // Mensagem de sucesso
+          System.out.println("\nLivro removido"); 
           break;
 
         case 3:
           System.out.print("\nTítulo do mapa temático: ");
-          String tituloMapa = sc.nextLine(); // Obtém o título do mapa temático
+          String tituloMapa = sc.nextLine(); 
 
           System.out.print("Nível de privilégio: ");
-          String nivelPrivilegio = sc.nextLine(); // Obtém o nível de privilégio
+          String nivelPrivilegio = sc.nextLine(); 
 
-          controle.adicionarMapaTematico(new MapaTematico(tituloMapa, nivelPrivilegio)); // Adiciona o mapa temático à biblioteca
-
-          System.out.println("\nMapa temático adicionado."); // Mensagem de sucesso
+          controle.adicionarMapaTematico(new MapaTematico(tituloMapa, nivelPrivilegio));
+          System.out.println("\nMapa temático adicionado."); 
           break;
 
         case 4:
           System.out.print("\nTítulo do mapa temático: ");
-          tituloMapa = sc.nextLine(); // Obtém o título do mapa temático
+          tituloMapa = sc.nextLine(); 
 
-          controle.removerMapaTematico(controle.getMapaTematico(tituloMapa)); // Remove o mapa temático da biblioteca
-
-          System.out.println("\nMapa temático removido."); // Mensagem de sucesso
+          controle.removerMapaTematico(controle.getMapaTematico(tituloMapa)); 
+          System.out.println("\nMapa temático removido.");
           break;
 
         case 5:
           System.out.print("\nNome do usuário: ");
-          String nomeUsuario = sc.nextLine(); // Obtém o nome do usuário
+          String nomeUsuario = sc.nextLine(); 
 
           System.out.print("Tipo (Aluno/Professor): ");
-          String tipo = sc.nextLine(); // Obtém o tipo de usuário (Aluno ou Professor)
+          String tipo = sc.nextLine(); 
 
           if (tipo.equalsIgnoreCase("Aluno")) {
             System.out.print("Data de validade (dia/mês/ano): ");
-            String data = sc.nextLine(); // Obtém a data de validade
+            String data = sc.nextLine();
 
-            // Cria um novo aluno com a data de validade e adiciona à biblioteca
+       
             controle.adicionarUsuario(new Aluno(nomeUsuario, new Date(data)));
           } else {
-            // Cria um novo professor e adiciona à biblioteca
+         
             controle.adicionarUsuario(new Professor(nomeUsuario));
           }
 
-          System.out.println("\nUsuário adicionado."); // Mensagem de sucesso
+          System.out.println("\nUsuário adicionado.");
           break;
 
         case 6:
           System.out.print("\nNome do usuário: ");
-          nomeUsuario = sc.nextLine(); // Obtém o nome do usuário
+          nomeUsuario = sc.nextLine(); 
 
-          controle.removerUsuario(controle.getUsuario(nomeUsuario)); // Remove o usuário da biblioteca
+          controle.removerUsuario(controle.getUsuario(nomeUsuario)); 
 
-          System.out.println("\nUsuário removido"); // Mensagem de sucesso
+          System.out.println("\nUsuário removido"); 
           break;
 
         case 0:
-          return; // Volta ao menu principal
-
+          return;
         default:
-          System.out.println("Opção inválida"); // Mensagem de opção inválida
+          System.out.println("Opção inválida");
       }
-    } while (op != 0); // Continua até que o usuário escolha voltar
+    } while (op != 0); 
   }
 
   // Método para lidar com as operações de atendimento
@@ -133,16 +130,15 @@ public class Terminal {
     int op;
 
     System.out.print("Nome do usuário: ");
-    String nomeUsuario = scanner.nextLine(); // Obtém o nome do usuário
+    String nomeUsuario = scanner.nextLine();
 
-    Usuario usuario = controle.getUsuario(nomeUsuario); // Obtém o usuário da biblioteca
-
+    Usuario usuario = controle.getUsuario(nomeUsuario);
     if (usuario == null) {
-      System.out.println("Usuário não encontrado"); // Mensagem se o usuário não for encontrado
+      System.out.println("Usuário não encontrado"); 
       return;
     }
 
-    // Loop para exibir o menu de atendimento até que o usuário escolha voltar (op = 0)
+   
     do {
       op = getInt(
           "1. Retirar Livro\n2. Devolver Livro\n3. Retirar Mapa Temático\n4. Devolver Mapa Temático\n5. Consultar Status\n0. Voltar");
@@ -150,72 +146,72 @@ public class Terminal {
       switch (op) {
         case 1:
           System.out.print("Título do livro: ");
-          String tituloLivro = scanner.nextLine(); // Obtém o título do livro
+          String tituloLivro = scanner.nextLine(); 
 
           if (controle.emprestaLivro(tituloLivro, usuario)) {
-            System.out.println("Livro retirado com sucesso"); // Mensagem de sucesso
+            System.out.println("Livro retirado com sucesso"); 
           } else {
-            System.out.println("Não foi possível retirar o livro"); // Mensagem de falha
+            System.out.println("Não foi possível retirar o livro"); 
           }
           break;
 
         case 2:
           System.out.print("Título do livro: ");
-          tituloLivro = scanner.nextLine(); // Obtém o título do livro
+          tituloLivro = scanner.nextLine(); 
 
           if (controle.devolveLivro(tituloLivro, usuario)) {
-            System.out.println("Livro devolvido com sucesso"); // Mensagem de sucesso
+            System.out.println("Livro devolvido com sucesso"); 
           } else {
-            System.out.println("Não foi possível devolver o livro"); // Mensagem de falha
+            System.out.println("Não foi possível devolver o livro");
           }
           break;
 
         case 3:
           System.out.print("Título do mapa temático: ");
-          String tituloMapa = scanner.nextLine(); // Obtém o título do mapa temático
+          String tituloMapa = scanner.nextLine(); 
 
           if (controle.emprestaMapaTematico(tituloMapa, usuario)) {
-            System.out.println("Mapa temático retirado com sucesso"); // Mensagem de sucesso
+            System.out.println("Mapa temático retirado com sucesso"); 
           } else {
-            System.out.println("Não foi possível retirar o mapa temático"); // Mensagem de falha
+            System.out.println("Não foi possível retirar o mapa temático"); 
           }
           break;
 
         case 4:
           System.out.print("Título do mapa temático: ");
-          tituloMapa = scanner.nextLine(); // Obtém o título do mapa temático
+          tituloMapa = scanner.nextLine(); 
 
           if (controle.devolveMapaTematico(tituloMapa, usuario)) {
-            System.out.println("Mapa temático devolvido com sucesso"); // Mensagem de sucesso
+            System.out.println("Mapa temático devolvido com sucesso"); 
           } else {
-            System.out.println("Não foi possível devolver o mapa temático"); // Mensagem de falha
+            System.out.println("Não foi possível devolver o mapa temático"); 
           }
           break;
 
         case 5:
           System.out.print("Título do item para status: ");
-          String tituloItem = scanner.nextLine(); // Obtém o título do item
+          String tituloItem = scanner.nextLine();
 
-          controle.mostrarStatus(tituloItem); // Mostra o status do item
+          controle.mostrarStatus(tituloItem); 
 
           break;
 
         case 0:
-          return; // Volta ao menu principal
+          return;
 
         default:
-          System.out.println("Opção inválida"); // Mensagem de opção inválida
+          System.out.println("Opção inválida"); 
       }
-    } while (op != 0); // Continua até que o usuário escolha voltar
+    } while (op != 0); 
   }
 
-  // Método auxiliar para obter um inteiro do usuário
+  
   private int getInt(String st) {
-    Scanner sc = new Scanner(System.in); // Novo Scanner para entrada de dados
+    Scanner sc = new Scanner(System.in); 
 
     System.out.print("\nInsira uma opção:\n" + st + "\nR: ");
-    int op = sc.nextInt(); // Lê o inteiro
+    int op = sc.nextInt(); 
 
-    return op; // Retorna o inteiro lido
+    return op;
   }
 }

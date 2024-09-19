@@ -125,7 +125,7 @@ public class Terminal {
     } while (op != 0); 
   }
 
-  // Método para lidar com as operações de atendimento
+ 
   private void modoAtendimento(Scanner scanner) {
     int op;
 

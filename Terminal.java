@@ -23,8 +23,8 @@ public class Terminal {
       switch (op) {
         case 0:
           System.out.println("\nFeito por Josué e Carlos Eduardo"); 
-          sc.close(); // Fecha o scanner
-          return; // Sai do método ini
+          sc.close(); 
+          return; 
 
         case 1:
           modoAdministrador(sc); 
